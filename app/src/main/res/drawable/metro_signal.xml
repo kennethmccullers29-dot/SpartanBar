@@ -1,0 +1,9 @@
+<!-- MDL2 Icons: E908; Scott Dorman, MIT. See assets/mdl2-icons-LICENSE.txt. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="76dp" android:height="76dp"
+    android:viewportWidth="76" android:viewportHeight="76">
+    <group android:scaleX="0.037109375" android:scaleY="-0.037109375"
+        android:translateX="20.1875" android:translateY="57">
+        <path android:fillColor="#FFFFFFFF" android:pathData="M768 896h192v-768h-192v768zM512 128v576h192v-576h-192zM256 128v384h192v-384h-192zM0 128v192h192v-192h-192z" />
+    </group>
+</vector>

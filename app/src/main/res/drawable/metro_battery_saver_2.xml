@@ -1,0 +1,9 @@
+<!-- MDL2 Icons: E86A; Scott Dorman, MIT. See assets/mdl2-icons-LICENSE.txt. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="76dp" android:height="76dp"
+    android:viewportWidth="76" android:viewportHeight="76">
+    <group android:scaleX="0.0449810606060606" android:scaleY="-0.0449810606060606"
+        android:translateX="15.689393939393941" android:translateY="58.893702651515156">
+        <path android:fillColor="#FFFFFFFF" android:pathData="M928 480v-64h-32v-160h-704v32h672v320h-619.5q-4 9.5-9.5 16.25t-12 14.75l-0.5 1h673.5v-160h32zM223.5 560q0-14-4.75-27t-13.25-23.5-20-18-25.5-10v-225.5h-32v225.5q-14 2.5-25.75 10t-20.25 18-13.25 23.5-4.75 27q0 16 6 30.5t17.5 26l56.5 56.5 56.5-56.5q11.5-11.5 17.25-26t5.75-30.5zM96 560q0-15 8.75-27.75t23.25-17.25v61h32v-61q14.5 4.5 23.25 17.25t8.75 27.75q0 20-14 34l-34 34-34-34q-14-14-14-34zM192 459q29 14 46.5 41.25t17.5 59.75v16h384v-256h-448v139z" />
+    </group>
+</vector>

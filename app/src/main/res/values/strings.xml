@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SpartanBar</string>
+    <string name="accessibility_service_name">SpartanBar status overlay</string>
+    <string name="notification_listener_name">SpartanBar Action Center notifications</string>
+    <string name="accessibility_service_description">Draws a Windows Mobile style status bar and opens Action Center with a downward swipe. Spartan apps can share their status bar color. Other apps use a black bar.</string>
+</resources>

@@ -1,0 +1,9 @@
+<!-- MDL2 Icons: EBAE; Scott Dorman, MIT. See assets/mdl2-icons-LICENSE.txt. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="76dp" android:height="76dp"
+    android:viewportWidth="76" android:viewportHeight="76">
+    <group android:scaleX="0.024739583333333332" android:scaleY="-0.024739583333333332"
+        android:translateX="19" android:translateY="50.666666666666664">
+        <path android:fillColor="#FFFFFFFF" android:pathData="M1472 576v-128h-64v-256h-1152v64h1088v512h-960v64h1024v-256h64zM320 672q0-28.5-9.5-54.5t-26.5-46.75-40.5-35.25-51.5-20.5v-323h-64v323q-28 6-51.5 20.5t-40.5 35.25-26.5 46.75-9.5 54.5v160h64v128h64v-128h64v128h64v-128h64v-160zM64 672q0-20 7.5-37.5t20.5-30.5 30.5-20.5 37.5-7.5 37.5 7.5 30.5 20.5 20.5 30.5 7.5 37.5v96h-192v-96zM256 452.5q45 19.5 78 55.5t50 82v114h128v-384h-256v132.5z" />
+    </group>
+</vector>
