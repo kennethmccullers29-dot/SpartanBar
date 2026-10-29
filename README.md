@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/icon.png" width="128" alt="SpartanBar icon"></p>
+
 # SpartanBar
 
 A **Windows 10 Mobile status bar and Action Center for Android**, part of the Spartan W10M / WP8.1 recreation (pairs with [Spartan Launcher](https://github.com/kennethmccullers29-dot/SpartanLauncher)).
