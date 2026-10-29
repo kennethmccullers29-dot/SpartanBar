@@ -20,10 +20,12 @@ A **Windows 10 Mobile status bar and Action Center for Android**, part of the Sp
 
 ## Install
 
-1. Go to **[Releases](https://github.com/kennethmccullers29-dot/SpartanBar/releases)** and download `SpartanBar-v1.0.apk`.
+1. Go to **[Releases](https://github.com/kennethmccullers29-dot/SpartanBar/releases)** and download `SpartanBar-v1.1.apk`.
 2. Install it, then open **SpartanBar** and follow the setup.
 
 Requires Android 8.0 (API 26) or newer.
+
+**Package name:** `com.ken1dot.spartanbar`. v1.1 moved from `com.example.*` to this package, so it installs as a new app. Uninstall v1.0 first so you don't end up with two copies.
 
 ## Permissions and setup
 
@@ -36,15 +38,15 @@ Requires Android 8.0 (API 26) or newer.
 
 - **Modify system settings**, for Rotation lock and Brightness. The app prompts for it, or grant it with adb:
   ```bash
-  adb shell appops set com.example.spartanbar WRITE_SETTINGS allow
+  adb shell appops set com.ken1dot.spartanbar WRITE_SETTINGS allow
   ```
 - **Do Not Disturb access**, for Quiet hours and Vibrate. The app prompts for it, or grant it with adb:
   ```bash
-  adb shell cmd notification allow_dnd com.example.spartanbar
+  adb shell cmd notification allow_dnd com.ken1dot.spartanbar
   ```
 - **Write secure settings**, for the Location toggle. This one is adb-only:
   ```bash
-  adb shell pm grant com.example.spartanbar android.permission.WRITE_SECURE_SETTINGS
+  adb shell pm grant com.ken1dot.spartanbar android.permission.WRITE_SECURE_SETTINGS
   ```
 
 **Optional:**
@@ -61,6 +63,10 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
 You need JDK 17+ and the Android SDK, or open the project in Android Studio.
+
+## Release signing
+
+To build a signed release, create `../keys/keystore.properties` next to the repo folder. It holds `storeFile`, `storePassword`, `keyAlias` and `keyPassword`. Then run `./gradlew assembleRelease`. Without that file, release builds are unsigned.
 
 ## Credits
 

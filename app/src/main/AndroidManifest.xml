@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <permission android:name="com.example.spartanbar.permission.SET_APPEARANCE"
+    <permission android:name="com.ken1dot.spartanbar.permission.SET_APPEARANCE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.example.spartanbar.permission.SET_APPEARANCE" />
+    <uses-permission android:name="com.ken1dot.spartanbar.permission.SET_APPEARANCE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <queries>
-        <provider android:authorities="com.example.spartanlauncher.accent" />
+        <provider android:authorities="com.ken1dot.spartanlauncher.accent" />
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
@@ -29,14 +29,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpartanBar">
         <provider android:name=".StatusBarStateProvider"
-            android:authorities="com.example.spartanbar.state"
+            android:authorities="com.ken1dot.spartanbar.state"
             android:exported="true"
-            android:readPermission="com.example.spartanbar.permission.SET_APPEARANCE" />
+            android:readPermission="com.ken1dot.spartanbar.permission.SET_APPEARANCE" />
         <receiver android:name=".StatusBarAppearanceReceiver"
             android:exported="true"
-            android:permission="com.example.spartanbar.permission.SET_APPEARANCE">
+            android:permission="com.ken1dot.spartanbar.permission.SET_APPEARANCE">
             <intent-filter>
-                <action android:name="com.example.spartanbar.SET_APPEARANCE" />
+                <action android:name="com.ken1dot.spartanbar.SET_APPEARANCE" />
             </intent-filter>
         </receiver>
         <activity
