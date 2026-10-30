@@ -50,7 +50,7 @@ class MetroAccessibilityService : AccessibilityService() {
     companion object {
         const val ACTION_UPDATE = "com.ken1dot.spartanbar.UPDATE"
         const val ACTION_DEBUG_CALL_STRIP = "com.ken1dot.spartanbar.DEBUG_CALL_STRIP"
-        private const val LOCK_SCREEN_PACKAGE = "com.example.spartanlock"
+        private const val LOCK_SCREEN_PACKAGE = "com.ken1dot.spartanlock"
         private val TRANSIENT_PACKAGES = setOf("com.sec.android.app.launcher", "com.android.launcher3",
         "com.google.android.apps.nexuslauncher", "com.samsung.android.app.cocktailbarservice",
         "com.samsung.android.honeyboard", "com.google.android.inputmethod.latin")
@@ -164,8 +164,24 @@ class MetroAccessibilityService : AccessibilityService() {
         }
     }
 
+    private fun keyguardLocked(): Boolean = try {
+        getSystemService(KeyguardManager::class.java).isKeyguardLocked
+    } catch (_: Exception) { false }
+
+    // Re-evaluate the music/live strip when the screen locks or unlocks so it never shows on the lock screen.
+    private val keyguardReceiver = object : android.content.BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (keyguardLocked() || intent?.action == Intent.ACTION_SCREEN_OFF) closeLiveActivityPanel()
+            updateCallStrip()
+            handler.postDelayed({ updateCallStrip() }, 600L)
+        }
+    }
+
     override fun onServiceConnected() {
         super.onServiceConnected()
+        ContextCompat.registerReceiver(this, keyguardReceiver, IntentFilter().apply {
+            addAction(Intent.ACTION_SCREEN_OFF); addAction(Intent.ACTION_SCREEN_ON); addAction(Intent.ACTION_USER_PRESENT)
+        }, ContextCompat.RECEIVER_NOT_EXPORTED)
         windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
         ContextCompat.registerReceiver(
             this, updateReceiver, IntentFilter(ACTION_UPDATE), ContextCompat.RECEIVER_NOT_EXPORTED
@@ -203,7 +219,7 @@ class MetroAccessibilityService : AccessibilityService() {
         // Spartan Music already shows its own now-playing UI; hide the music strip while it is foreground.
         val inMusicApp = debugCall == null && call == null && activity?.kind == MetroLiveActivity.Kind.MUSIC &&
             foregroundPackage == "com.example.spartanmusic"
-        val show = currentBar != null && data != null && !onCallScreen && !lockScreenVisible && !actionCenterVisible && !inMusicApp
+        val show = currentBar != null && data != null && !onCallScreen && !lockScreenVisible && !(activity != null && call == null && keyguardLocked()) && !actionCenterVisible && !inMusicApp
         if (!show || data == null) {
             currentBar?.setCallAccent(null)
             callStrip?.let { strip -> try { windowManager.removeView(strip) } catch (_: Exception) { } }
@@ -510,7 +526,7 @@ class MetroAccessibilityService : AccessibilityService() {
         val music = candidates.filter { it.kind == MetroLiveActivity.Kind.MUSIC }
             .maxByOrNull { it.notification.postTime }
         actionCenter?.setNowPlaying(music, accentColor)
-        if (selected == null || lockScreenVisible) closeLiveActivityPanel()
+        if (selected == null || lockScreenVisible || keyguardLocked()) closeLiveActivityPanel()
         else liveActivityPanel?.setActivity(selected)
     }
 
@@ -986,6 +1002,7 @@ class MetroAccessibilityService : AccessibilityService() {
     override fun onInterrupt() = Unit
 
     override fun onDestroy() {
+        try { unregisterReceiver(keyguardReceiver) } catch (_: IllegalArgumentException) { }
         unregisterReceiver(updateReceiver)
         try { unregisterReceiver(debugCallReceiver) } catch (_: IllegalArgumentException) { }
         try { unregisterReceiver(callEndedReceiver) } catch (_: IllegalArgumentException) { }

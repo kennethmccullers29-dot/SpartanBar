@@ -22,7 +22,7 @@ A **Windows 10 Mobile status bar and Action Center for Android**, part of the Sp
 
 ## Install
 
-1. Go to **[Releases](https://github.com/kennethmccullers29-dot/SpartanBar/releases)** and download `SpartanBar-v1.1.apk`.
+1. Go to **[Releases](https://github.com/kennethmccullers29-dot/SpartanBar/releases)** and download `SpartanBar-v1.3.apk`.
 2. Install it, then open **SpartanBar** and follow the setup.
 
 Requires Android 8.0 (API 26) or newer.

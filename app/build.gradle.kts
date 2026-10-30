@@ -5,6 +5,12 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+// Add google-services.json from Firebase Console for com.ken1dot.spartanbar to enable Crashlytics.
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.crashlytics")
+}
+
 android {
     namespace = "com.ken1dot.spartanbar"
     compileSdk {
@@ -15,10 +21,11 @@ android {
         applicationId = "com.ken1dot.spartanbar"
         minSdk = 26
         targetSdk = 37
-        versionCode = 3
-        versionName = "1.2"
+        versionCode = 4
+        versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
     }
 
     // Release signing: ../keys/keystore.properties (outside the repo, never committed).
@@ -40,6 +47,7 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.findByName("release")
+            manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
             optimization {
                 enable = true
                 packageScope = setOf("androidx.**", "kotlin.**", "kotlinx.**")
@@ -53,9 +61,17 @@ android {
     buildFeatures {
         compose = true
     }
+    lint {
+        // MainActivity extends ComponentActivity, so Fragment's old activity-result callback warning is a false positive.
+        disable += "InvalidFragmentVersionForActivityResult"
+    }
 }
 
 dependencies {
+    if (file("google-services.json").exists()) {
+        implementation(platform(libs.firebase.bom))
+        implementation(libs.firebase.crashlytics)
+    }
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.material3)

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "255155144307",
+    "project_id": "spartanbar-136bb",
+    "storage_bucket": "spartanbar-136bb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255155144307:android:ce37c625ef785f7f548c06",
+        "android_client_info": {
+          "package_name": "com.ken1dot.spartanbar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA9Zj1T2s1AHOi7MZBKy8s2LwFzC5rWSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
