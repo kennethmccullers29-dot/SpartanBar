@@ -1,3 +1,7 @@
+# R8 moved a public Kotlin sequence facade out of this package while leaving its
+# superclass package-private, causing IllegalAccessError on Android at runtime.
+-keep class kotlin.sequences.** { *; }
+
 # Add project specific R8 rules here.
 # AGP will combine all keep rule files in src/main/keepRules to pass to R8
 #
